@@ -3,19 +3,26 @@
 function ip2bin($ip) {
 	/* Converts octal IP addresses to non-deliminated binary
 	  e.g. xxx.xxx.xxx.xxx to 11111111111111111111111111111111 */
-	$binip = decbin(ip2long($ip));
+	$a = explode('.',$ip);
+	$binip = octet($a[0]) . octet($a[1]) . octet($a[2]) . octet($a[3]);
 	return $binip;
 }
 function bin2ip($bin) {
 	/* Converts non-deliminated binary to octal IP addresses
 	e.g. 11111111111111111111111111111111 to xxx.xxx.xxx.xxx */
-	$out = long2ip(bindec(str_pad($bin, 32, "0", STR_PAD_LEFT)));
+	$ip = str_split(str_pad($bin,32, '0', STR_PAD_RIGHT),8);
+	$x = 0;
+	foreach($ip as $i) {
+		$ip[$x] = bindec($i);
+		$x++;
+	}
+	$out = implode('.',$ip);
 	return $out;
 }
-function subnet($binip,$mask) {
-	/* Returns a shortened subnet mask */
-	$network = substr($binip, 0, $mask);
-	return $network;
+function octet($octet) {
+	/* Pads binary octets
+	Really just has it's own function to keep the other one looking clean */
+	return str_pad(decbin($octet),8,'0', STR_PAD_LEFT);
 }
 function prepare_input($net,$min) {
 	/* Sorts all input network addressses, convers to binary, and cleans duplicates */

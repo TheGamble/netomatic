@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Net-O-Matic!</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/superhero/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Net-O-Matic!</h1>
+				<p>Hey, I accidentally lost this. I'm working on making it again. It kinda works now, but make sure you double-check it. The other features will be back soon. Check back in a day or so.</p>
+			</div>
+		</div>
+		
+		<div class="container">
+			<form id="netomatic">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h2>Input</h2>
+								<textarea name="input" id="input" rows="20" cols="30"></textarea>						
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<input type="submit" value="Calculate" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h2>Output</h2>
+								<textarea name="output" id="output" rows="20" cols="30"></textarea>						
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		
+		<!-- Now that we got all the front-end out of the way, BEGIN CORE JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			var request;
+			$("#netomatic").submit(function(event){
+				if (request) {
+					request.abort();
+				}
+				$("#output").html("Loading...");
+
+				var $form = $(this);
+				var $inputs = $form.find("input, select, button, textarea");
+				var serializedData = $form.serialize();
+
+				$inputs.prop("disabled",true);
+
+				$.post('submit.php', serializedData, function(data){
+					$('#output').html(data);
+					$inputs.prop("disabled",false);
+
+				}).fail(function() {
+					console.error("Posting Error");
+					$inputs.prop("disabled",false);
+
+				});
+
+				event.preventDefault();
+
+			});
+		});
+		</script>
+		<!-- END OF CORE JS -->
+	</body>
+</html>

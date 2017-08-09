@@ -24,6 +24,11 @@ function octet($octet) {
 	Really just has it's own function to keep the other one looking clean */
 	return str_pad(decbin($octet),8,'0', STR_PAD_LEFT);
 }
+function subnet($binip,$mask) {
+	/* Returns a shortened subnet mask */
+	$network = substr($binip, 0, $mask);
+	return $network;
+}
 function prepare_input($net,$min) {
 	/* Sorts all input network addressses, convers to binary, and cleans duplicates */
 	sort($net);

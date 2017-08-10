@@ -3,7 +3,6 @@ include '../includes/summary.php';
 $input = $_POST['input'];
 $notation = $_POST['notation'];
 $minNetwork = $_POST['minNetwork'];
-
 $prefix = $_POST['outputPrefix'];
 $prefixEntry = $_POST['outputPrefixEntry'];
 $suffix = $_POST['outputSuffix'];

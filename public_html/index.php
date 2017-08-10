@@ -24,6 +24,9 @@
 			h1.title {
 				font-family: "Lobster", cursive;
 			}
+			octicon {
+				color: rgb(198, 203, 209);
+			}
 		</style>
 	</head>
 	<body>
@@ -36,7 +39,109 @@
 		<div class="container">
 			<form id="netomatic">
 				<div class="row">
-					<div class="alert alert-danger" role="alert"><strong>Hey!</strong> Netomatic has been having a series of issues recently and is temporarily disabled. Once corrections have been made, it will be made accessible again.</alert>
+					<!--<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+						<strong>Warning!</strong> Net-O-Matic has some issues with its code that we need to work out. Please understand that all results are suspect and should be subject to review before use in live networks!
+					</div>-->
+					<div class="col-md-4">
+						<div class="panel panel-info">
+							<div class="panel-body">
+								<h3>Input</h3>
+								<textarea class="form-control" name="input" id="input" rows="20" cols="30" placeholder="172.16.0.0/23&#013;&#010;172.18.0.0/22&#013;&#010;172.24.0.0/26..."></textarea>
+								<p>Note: Any addresses not in CIDR notation will be treated as host addresses (/32)</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-info">
+							<div class="panel-body">
+								<h3>Options</h3>
+								<p>Mask Notation</p>
+								<div class="radio">
+									<label>
+										<input type="radio" name="notation" id="notationCIDR" value="1" aria-label="CIDR" checked>
+										CIDR (169.254.254.128/24)
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="notation" id="notationNetmask" value="2" aria-label="Netmask">
+										Netmask (169.254.254.128 255.255.255.0)
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="notation" id="notationWildcard" value="3" aria-label="Wildcard">
+										Wildcard (169.254.254.128 0.0.0.255)
+									</label>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon3">169.254.254.128/</span>
+									<select name="minNetwork" id="minNetwork" class="form-control">
+										<option>0</option>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+										<option>11</option>
+										<option>12</option>
+										<option>13</option>
+										<option>14</option>
+										<option>15</option>
+										<option>16</option>
+										<option>17</option>
+										<option>18</option>
+										<option>19</option>
+										<option>20</option>
+										<option>21</option>
+										<option>22</option>
+										<option>23</option>
+										<option>24</option>
+										<option>25</option>
+										<option>26</option>
+										<option>27</option>
+										<option>28</option>
+										<option>29</option>
+										<option>30</option>
+										<option>31</option>
+										<option selected>32</option>
+									</select>
+								</div>
+								<hr>
+								<p>Prefix and Suffix<p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="outputPrefix" id="outputPrefix">
+									</span>
+									<input type="text" class="form-control" name="outputPrefixEntry" id="outputPrefixEntry" aria-label="Output Prefix" placeholder="Prefix...">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="outputSuffix" id="outputSuffix">
+									</span>
+									<input type="text" class="form-control" name="outputSuffixEntry" id="outputSuffixEntry" aria-label="Output Suffix" placeholder="Suffix...">
+								</div>
+								<hr>
+								<button class="btn btn-primary btn-lg btn-block" type="submit">Calculate</button>
+							</div>
+						</div>
+						<p>Net-O-Matic v2.01 | <a href="/LICENSE"><span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> License</a> | <a href="https://github.com/TheGamble/netomatic">GitHub</a></p>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-success">
+							<div class="panel-body">
+								<h3>Output</h3>
+								<textarea class="form-control" name="output" id="output" rows="20" cols="30"></textarea>
+							</div>
+						</div>
+					</div>
 				</div>
 			</form>
 		</div>

@@ -39,10 +39,10 @@
 		<div class="container">
 			<form id="netomatic">
 				<div class="row">
-					<!--<div class="alert alert-danger alert-dismissible" role="alert">
+					<div class="alert alert-danger alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-						<strong>Warning!</strong> Net-O-Matic has some issues with its code that we need to work out. Please understand that all results are suspect and should be subject to review before use in live networks!
-					</div>-->
+						<strong>Warning!</strong> Net-O-Matic has some issues with some ranges that we need to work out. Please understand that all results are suspect and should be subject to review before use in live networks!
+					</div>
 					<div class="col-md-4">
 						<div class="panel panel-info">
 							<div class="panel-body">
